@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="crudModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="suscripcion">
+    <Key>
+      <PropertyRef Name="idasociacion" />
+    </Key>
+    <Property Name="idasociacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idsuscriptor" Type="Int32" Nullable="false" />
+    <Property Name="fechaalta" Type="DateTime" Precision="3" />
+    <Property Name="fechabaja" Type="DateTime" Precision="3" />
+    <Property Name="motivo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="suscriptor" Relationship="Self.FK_suscripcion_suscriptor" FromRole="suscripcion" ToRole="suscriptor" />
+  </EntityType>
+  <EntityType Name="suscriptor">
+    <Key>
+      <PropertyRef Name="idsuscriptor" />
+    </Key>
+    <Property Name="idsuscriptor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="numerodocumento" Type="Int32" Nullable="false" />
+    <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="passowrd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tipodoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="suscripcion" Relationship="Self.FK_suscripcion_suscriptor" FromRole="suscriptor" ToRole="suscripcion" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tipodocumento">
+    <Key>
+      <PropertyRef Name="idtipo" />
+    </Key>
+    <Property Name="tipodoc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="idtipo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_suscripcion_suscriptor">
+    <End Role="suscriptor" Type="Self.suscriptor" Multiplicity="1" />
+    <End Role="suscripcion" Type="Self.suscripcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="suscriptor">
+        <PropertyRef Name="idsuscriptor" />
+      </Principal>
+      <Dependent Role="suscripcion">
+        <PropertyRef Name="idsuscriptor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="crudEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="suscripcion" EntityType="Self.suscripcion" />
+    <EntitySet Name="suscriptor" EntityType="Self.suscriptor" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="tipodocumento" EntityType="Self.tipodocumento" />
+    <AssociationSet Name="FK_suscripcion_suscriptor" Association="Self.FK_suscripcion_suscriptor">
+      <End Role="suscriptor" EntitySet="suscriptor" />
+      <End Role="suscripcion" EntitySet="suscripcion" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

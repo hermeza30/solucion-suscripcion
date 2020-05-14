@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="crudModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="suscripcion">
+    <Key>
+      <PropertyRef Name="idasociacion" />
+    </Key>
+    <Property Name="idasociacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fechaalta" Type="datetime" />
+    <Property Name="fechabaja" Type="datetime" />
+    <Property Name="motivo" Type="nvarchar" MaxLength="50" />
+    <Property Name="idsuscriptor" Type="int" />
+  </EntityType>
+  <EntityType Name="suscriptor">
+    <Key>
+      <PropertyRef Name="idsuscriptor" />
+    </Key>
+    <Property Name="idsuscriptor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="apellido" Type="nvarchar" MaxLength="50" />
+    <Property Name="numerodocumento" Type="int" Nullable="false" />
+    <Property Name="mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="direccion" Type="nvarchar" MaxLength="50" />
+    <Property Name="usuario" Type="nvarchar" MaxLength="50" />
+    <Property Name="passowrd" Type="nvarchar" MaxLength="50" />
+    <Property Name="tipodoc" Type="nvarchar" MaxLength="50" />
+    <Property Name="telefono" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tipodocumento">
+    <Key>
+      <PropertyRef Name="idtipo" />
+    </Key>
+    <Property Name="tipodoc" Type="nchar" MaxLength="10" />
+    <Property Name="idtipo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_suscripcion_suscriptor">
+    <End Role="suscriptor" Type="Self.suscriptor" Multiplicity="1" />
+    <End Role="suscripcion" Type="Self.suscripcion" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="suscriptor">
+        <PropertyRef Name="idsuscriptor" />
+      </Principal>
+      <Dependent Role="suscripcion">
+        <PropertyRef Name="idasociacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="crudModelStoreContainer">
+    <EntitySet Name="suscripcion" EntityType="Self.suscripcion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="suscriptor" EntityType="Self.suscriptor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tipodocumento" EntityType="Self.tipodocumento" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_suscripcion_suscriptor" Association="Self.FK_suscripcion_suscriptor">
+      <End Role="suscriptor" EntitySet="suscriptor" />
+      <End Role="suscripcion" EntitySet="suscripcion" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,15 @@
+C:\Users\Toni\source\repos\FormsUser\bin\Debug\FormsUser.exe.config
+C:\Users\Toni\source\repos\FormsUser\bin\Debug\FormsUser.exe
+C:\Users\Toni\source\repos\FormsUser\bin\Debug\FormsUser.pdb
+C:\Users\Toni\source\repos\FormsUser\obj\Debug\FormsUser.csprojAssemblyReference.cache
+C:\Users\Toni\source\repos\FormsUser\obj\Debug\FormsUser.Form1.resources
+C:\Users\Toni\source\repos\FormsUser\obj\Debug\FormsUser.Properties.Resources.resources
+C:\Users\Toni\source\repos\FormsUser\obj\Debug\FormsUser.csproj.GenerateResource.cache
+C:\Users\Toni\source\repos\FormsUser\obj\Debug\FormsUser.csproj.CoreCompileInputs.cache
+C:\Users\Toni\source\repos\FormsUser\obj\Debug\FormsUser.exe
+C:\Users\Toni\source\repos\FormsUser\obj\Debug\FormsUser.pdb
+C:\Users\Toni\source\repos\FormsUser\bin\Debug\EntityFramework.dll
+C:\Users\Toni\source\repos\FormsUser\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Toni\source\repos\FormsUser\bin\Debug\EntityFramework.xml
+C:\Users\Toni\source\repos\FormsUser\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Toni\source\repos\FormsUser\obj\Debug\FormsUser.csproj.CopyComplete
